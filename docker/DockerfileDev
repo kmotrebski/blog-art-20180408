@@ -1,0 +1,22 @@
+# escape=\
+FROM php:7.0.13-apache
+
+MAINTAINER Konrad Otrębski
+
+ENV PHALCON_RELEASE="v3.0.2"
+
+# phalcon framework (as PHP extension) togather with missing mcrypt extension that is required by Phalcon
+RUN apt-get clean && apt-get update && \
+    # install mcrypt
+    apt-get -y install libmcrypt-dev &&\
+    docker-php-ext-install -j$(nproc) mcrypt && \
+    # install phalcon
+    mkdir -p /tmp/phalcon && cd /tmp/phalcon && \
+    curl -L --silent https://github.com/phalcon/cphalcon/archive/${PHALCON_RELEASE}.tar.gz | tar -xz --strip=1 -C /tmp/phalcon && \
+    cd build && ./install && docker-php-ext-enable phalcon
+
+WORKDIR /var/www/html/blog-app
+
+# set up apache server
+COPY apache.conf $APACHE_CONFDIR/conf-available/docker-php.conf
+RUN a2enconf docker-php && a2enmod rewrite

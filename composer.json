@@ -1,0 +1,11 @@
+{
+  "license": "MIT",
+  "require-dev": {
+    "sneakybobito/phalcon-stubs": "~3.0.1",
+    "phpunit/phpunit": "5.7.*",
+    "phalcon/incubator": "^3.0"
+  },
+  "autoload-dev": {
+    "psr-4": { "KMOtrebski\\BlogApp\\Tests\\Unit\\": "tests/php/Unit/" }
+  }
+}
