@@ -6,7 +6,7 @@ clear
 CONTAINER_NAME="unit_tests"
 SCOPE="tests/php/Unit"
 
-source dev.conf
+source ./.env
 
 docker run --rm --interactive --tty \
     -v $(pwd):/app \
@@ -28,3 +28,5 @@ docker run \
         --rm \
         ${DOCKER_REG}/blog-app-1:dev \
         vendor/phpunit/phpunit/phpunit --bootstrap tests/php/Unit/TestBootstrap.php ${SCOPE}
+
+docker curl -XGET localhost:${HTTP_PORT}
