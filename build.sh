@@ -10,14 +10,9 @@ source ./.env
 
 docker run --rm --interactive --tty \
     -v $(pwd):/app \
-    --env SSH_AUTH_SOCK=/ssh-auth.sock \
-    --volume $SSH_AUTH_SOCK:/ssh-auth.sock \
-    --volume /etc/passwd:/etc/passwd:ro \
-    --volume /etc/group:/etc/group:ro \
-    --volume ~/.ssh:/home/$(id -u -n)/.ssh \
     --user $(id -u):$(id -g) \
     --name composer \
-    composer:1.6.3 update --no-interaction --ignore-platform-reqs -vvv
+    composer:1.6.3 install --no-interaction --ignore-platform-reqs -vvv
 
 docker build -t ${DOCKER_REG}/blog-app-1:dev -f docker/DockerfileDev .
 docker build -t ${DOCKER_REG}/blog-app-1:prod -f docker/Dockerfile .
