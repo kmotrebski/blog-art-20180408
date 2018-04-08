@@ -1,0 +1,52 @@
+<?php declare(strict_types=1);
+
+use KMOtrebski\BlogApp\Controllers\IndexController;
+
+/**
+ * @var \Phalcon\Mvc\View\EngineInterface $this
+ */
+
+?>
+
+<!DOCTYPE html>
+<?php
+
+?>
+<head>
+    <title>An awesome aplication</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <?php
+    $assets = [
+        'css/foundation.min.css',
+    ];
+
+    foreach ($assets as $asset) {
+        $format = '<link rel="stylesheet" href="%1$s">';
+        $staticUrl = $this->url->getStatic($asset);
+        echo sprintf($format, $staticUrl);
+    }
+    ?>
+</head>
+<body>
+<?php
+
+echo $this->getContent();
+
+$assets = [
+    'js/vendor/foundation.js',
+];
+
+$basicJS = $this->assets->collection("basic");
+
+foreach ($assets as $asset) {
+    $basicJS->addJs($asset, true, false, null);
+}
+
+$this->assets->outputJs('basic');
+
+?>
+</body>
+</html>

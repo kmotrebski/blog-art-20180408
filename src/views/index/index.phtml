@@ -1,0 +1,15 @@
+<?php
+
+use KMOtrebski\BlogApp\Library\UrlFactory;
+
+echo '<CENTER>';
+
+    echo 'Would you like to generate an awesome number? Press a button! ';
+
+    $tagFormat = '<A class="button" href="%s" >%s</A>';
+    $url = $this->url->get(UrlFactory::someRoute('index', 'generate'));
+    echo sprintf($tagFormat, $url, 'Generate!');
+
+echo '</CENTER>';
+
+?>
