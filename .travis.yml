@@ -3,4 +3,5 @@ sudo: required
 services:
   - docker
 
+install: true
 script: ./build.sh
