@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -ev
 
 clear
 
@@ -13,14 +13,19 @@ NC='\033[0m'
 
 source ./.env
 
+# build Docker images
+
 docker run --rm --interactive --tty \
     -v $(pwd):/app \
     --user $(id -u):$(id -g) \
     --name composer \
     composer:1.6.3 install --no-interaction --ignore-platform-reqs -vvv
 
-docker build -t ${DOCKER_REG}/blog-app-1:dev -f docker/DockerfileDev .
-docker build -t ${DOCKER_REG}/blog-app-1:prod -f docker/Dockerfile .
+docker build -t ${DOCKER_REG}/blog-app-1:dev -f docker/DockerfileDev  .
+docker build -t ${DOCKER_REG}/blog-app-1:prod -f docker/DockerfileProd --build-arg DOCKER_REG=${DOCKER_REG} .
+docker build -t ${DOCKER_REG}/blog-app-1:debug -f docker/DockerfileDebug --build-arg DOCKER_REG=${DOCKER_REG} .
+
+# run unit tests
 
 docker run \
         --volume $(pwd):/var/www/html/blog-app \
@@ -28,6 +33,8 @@ docker run \
         --rm \
         ${DOCKER_REG}/blog-app-1:dev \
         vendor/phpunit/phpunit/phpunit --bootstrap tests/php/Unit/TestBootstrap.php ${SCOPE}
+
+# run end-2-end test
 
 docker run -d \
         --volume $(pwd):/var/www/html/blog-app \
@@ -44,3 +51,4 @@ done
 docker stop run_e2e
 
 printf "${GREEN}Build finished with success!${NC}\n"
+

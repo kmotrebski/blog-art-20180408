@@ -1,5 +1,6 @@
 # escape=\
-FROM php:7.0.13-apache
+ARG DOCKER_REG
+FROM ${DOCKER_REG}/blog-app-1:dev
 
 MAINTAINER Konrad Otrębski
 
