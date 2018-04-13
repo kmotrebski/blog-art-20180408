@@ -15,14 +15,4 @@ abstract class UrlFactory
             "action"     => $action,
         ];
     }
-
-    /**
-     * @return string[]
-     */
-    public static function home() : array
-    {
-        return [
-            'for' => 'home',
-        ];
-    }
 }
