@@ -5,4 +5,4 @@ FROM ${DOCKER_REG}/blog-app-1:dev
 MAINTAINER Konrad Otrębski
 
 # include code into a container and install dependencies
-COPY src /var/www/html/blog-app
+COPY src /var/www/html/blog-app/src

@@ -16,8 +16,6 @@ try {
 
     include APP_PATH . '/config/loader.php';
 
-    include $config->application->vendorDir . 'autoload.php';
-
     $application = new \Phalcon\Mvc\Application($di);
 
     echo $application->handle()->getContent();
