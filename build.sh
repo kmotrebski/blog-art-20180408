@@ -8,7 +8,9 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 NC='\033[0m'
 
-source ./.env
+source build/setup_build_variables.sh
+
+printf "${GREEN}Going to build with DOCKER_REG=${DOCKER_REG} and HTTP_PORT=${HTTP_PORT}.${NC}\n"
 
 # build Docker images
 
