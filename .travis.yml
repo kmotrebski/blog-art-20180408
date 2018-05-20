@@ -5,7 +5,7 @@ services:
 
 install: true
 script:
-  - echo 'Configuring...' && echo -en 'travis_fold:start:build\\r'
+  - echo 'Build script folded...' && echo -en 'travis_fold:start:build\\r'
   - ./build.sh
   - echo -en 'travis_fold:end:build\\r'
 deploy:
@@ -14,4 +14,3 @@ deploy:
   on:
     branch: master
     condition: -z "${TRAVIS_ART1_DOCKER_REG_PASSWORD}"
-    condition: -z "${TRAVIS_ART1_DOCKER_REG}"
