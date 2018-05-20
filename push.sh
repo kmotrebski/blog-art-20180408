@@ -10,12 +10,14 @@ NC='\033[0m'
 #todo sprawic ze jak nie ma ustawionego hasła do docker hub to deploy przerywany jest errorem
 #todo DOCKER_REG rename na DOCKER_REG_LOGIN
 
+#set up DOCKER_REG and DOCKER_REG_PASSWORD variable
 source build/setup_push_variables.sh
 
 # push Docker images to the repository
 
 docker version
-echo "${DOCKER_REG_PASSWORD}" | docker login --username ${DOCKER_REG} --password-stdin
+
+eval "docker login --username ${DOCKER_REG} --password ${DOCKER_REG_PASSWORD}"
 
 docker push ${DOCKER_REG}/blog-app-1:dev
 docker push ${DOCKER_REG}/blog-app-1:prod
