@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -ev
 
-clear
-
 #colors
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
