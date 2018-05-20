@@ -10,12 +10,12 @@ if [ "$TRAVIS" = "true" ]; then
 
     if [[ -z "${TRAVIS_ART1_DOCKER_REG}" ]]; then
         printf "${RED}Aborting deployment as login to Docker Hub is not set up. Have a look at README file, \"Forking\" section, for details.${NC}\n"
-        exit 2
+        exit 0
     fi
 
     if [[ -z "${TRAVIS_ART1_DOCKER_REG_PASSWORD}" ]]; then
         printf "${RED}Aborting deployment as password to Docker Hub is not set up. Have a look at README file, \"Forking\" section, for details.${NC}\n"
-        exit 2
+        exit 0
     fi
 
     DOCKER_REG="${TRAVIS_ART1_DOCKER_REG}"
