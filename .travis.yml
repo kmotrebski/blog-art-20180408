@@ -13,4 +13,5 @@ deploy:
   script: bash push.sh
   on:
     branch: master
-    condition: -z "${TRAVIS_ART1_DOCKER_REG_PASSWORD}"
+    condition: -n "${TRAVIS_ART1_DOCKER_REG_PASSWORD}"
+    condition: -n "${TRAVIS_ART1_DOCKER_REG}"
