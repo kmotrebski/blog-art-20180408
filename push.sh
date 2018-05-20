@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
+set -e
 
-# Add DOCKER_REG_PASS if missing
+#colors
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[0;33m'
+NC='\033[0m'
 
-if ! grep "DOCKER_REG_PASS" .env > /dev/null
-then
+#todo sprawic ze jak nie ma ustawionego hasła do docker hub to deploy przerywany jest errorem
+#todo DOCKER_REG rename na DOCKER_REG_LOGIN
 
-    echo "Password to Docker Hub.".
-    read DOCKER_REG_PASS
-
-    echo "DOCKER_REG_PASS=${DOCKER_REG_PASS}" >> .env
-fi
-
-source ./.env
+source build/setup_push_variables.sh
 
 # push Docker images to the repository
 
-docker login --username ${DOCKER_REG} --password ${DOCKER_REG_PASS}
+docker version
+echo "${DOCKER_REG_PASSWORD}" | docker login --username ${DOCKER_REG} --password-stdin
 
 docker push ${DOCKER_REG}/blog-app-1:dev
 docker push ${DOCKER_REG}/blog-app-1:prod
