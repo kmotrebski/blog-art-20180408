@@ -4,7 +4,10 @@ services:
   - docker
 
 install: true
-script: ./build.sh
+script:
+  - echo 'Configuring...' && echo -en 'travis_fold:start:build\\r'
+  - ./build.sh
+  - echo -en 'travis_fold:end:build\\r'
 deploy:
   provider: script
   script: bash push.sh
