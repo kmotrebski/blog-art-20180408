@@ -14,10 +14,7 @@ source build/setup_push_variables.sh
 
 # push Docker images to the repository
 
-#todo remove
-printf "${YELLOW}Login: ${DOCKER_REG}${NC}\n"
-
-echo ${DOCKER_REG_PASSWORD} | docker login -u ${DOCKER_REG} --password-stdin
+eval "docker login --username ${DOCKER_REG} --password ${DOCKER_REG_PASSWORD}"
 
 docker push ${DOCKER_REG}/blog-app-1:dev
 docker push ${DOCKER_REG}/blog-app-1:prod
