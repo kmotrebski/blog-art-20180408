@@ -1,9 +1,12 @@
 #!/bin/bash
 
+# clears CLI terminal
 clear
 
+# read value of DOCKER_REG variable
 source ./.env
 
+# set basic settings
 CONTAINER_NAME="unit_tests"
 SCOPE="tests/php/Unit"
 
