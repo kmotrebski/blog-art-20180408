@@ -5,9 +5,8 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-if [ -e .env ]; then
-    printf "${RED}.env is already present. Please fill it in the missing configuration (if any at all). If you want to use this configuration helper then you have to delete the .env file and start again. If you want to start an app then run a run.sh script.${NC}\n"
-    exit
+if [ ! -f .env ]; then
+    touch .env
 fi
 
 # Add "DOCKER_REG" field if missing
