@@ -1,12 +1,14 @@
 [![Build Status](https://travis-ci.org/kmotrebski/blog-art-20180408.svg?branch=master)](https://travis-ci.org/kmotrebski/blog-art-20180408)
 
-This is a project for a blog post. It's a simple web app in PHP that has a single entrypoint where it displays an awesome integer from a 1 to 100 range. You can read the article that this app supports [here]().
+This is an exemplary project to support an article on my blog. It's about running PHP unit tests inside Docker during daily development, [check it here](https://kmotrebski.github.io/2018/05/26/phpunit-inside-docker.html). 
+
+This is simple web app in PHP that has a single entrypoint where it displays an awesome integer from a 1 to 100 range.
 
 # How to run
 
 ### Running "production" version
 
-If you want to just see the app running and have awesome numbers to be generated then run a "production" image with all the code inside already:
+If you want to just see the app running and have awesome numbers to be generated then run a "production" image with all the code packed inside already:
 ```bash
 docker run -p "80:80" --rm kmotrebski/blog-app-1:prod
 ```
@@ -31,5 +33,5 @@ The above will clone the project and start a script that will:
 If you are going to fork this repository then it will run fine in Travis. If you want Travis to automatically push Docker image to Docker Hub then you have to set environment variables in Travis:
 
 - `TRAVIS_ART1_DOCKER_REG` with your Docker Hub login.
-- `TRAVIS_ART1_DOCKER_REG_PASSWORD` encrypted value  with your Docker Hub password. One more time, don't forget to set it up as encrypted value! [See here for how to do it](link).
+- `TRAVIS_ART1_DOCKER_REG_PASSWORD` encrypted value  with your Docker Hub password. One more time, don't forget to set it up as encrypted value! [See here for how to do it](https://docs.travis-ci.com/user/environment-variables/#Defining-encrypted-variables-in-.travis.yml).
 
